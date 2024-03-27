@@ -6,36 +6,48 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private FixedJoystick fixedJoystick;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Vector2 jumpDir;
+    private SpriteRenderer spriteRenderer;
+    [SerializeField] private Joystick joystickScript;
+    [SerializeField] private AnimationController animationControllerScript;
 
-    //public void FixedUpdate()
-    //{
-    //    float dir = Vector2.one * fixedJoystick.Horizontal;
-    //    transform.position += new Vector3(dir , 0, 0);
-    //    Vector3 direction = Vector3.forward * fixedJoystick.Vertical + Vector3.right * fixedJoystick.Horizontal;
-    //    Debug.Log(direction);
-    //    rb.AddForce(direction * speed * Time.fixedDeltaTime);
-    //}
+    void Start()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
     void Update()
     {
         if (fixedJoystick.Horizontal > 0.1f)
         {
-            Quaternion newRotation = Quaternion.Euler(0, 0, 0);
-            transform.rotation = newRotation;
-            Vector3 newPos = new Vector3(fixedJoystick.Horizontal, 0, 0);
-            transform.position += newPos * speed * Time.deltaTime;
+            spriteRenderer.flipX = false;
+            transform.position += new Vector3(fixedJoystick.Horizontal * speed * Time.deltaTime, 0, 0);
+            //transform.Translate(fixedJoystick.Horizontal * Time.deltaTime * speed, 0, 0);
         }
-
         else if (fixedJoystick.Horizontal < -0.1f)
         {
-
-            Quaternion newRotation = Quaternion.Euler(0, 180, 0);
-            transform.rotation = newRotation;
-            Vector3 newPos = new Vector3(fixedJoystick.Horizontal, 0, 0);
-            transform.position += newPos * speed * Time.deltaTime;
+            spriteRenderer.flipX = true;
+            transform.position += new Vector3(fixedJoystick.Horizontal * speed * Time.deltaTime, 0, 0);
+            //transform.Translate(fixedJoystick.Horizontal * Time.deltaTime * speed, 0, 0);
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (animationControllerScript.IsGrounded)
         {
-            rb.AddForce(jumpDir, ForceMode2D.Impulse);
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                rb.AddForce(jumpDir, ForceMode2D.Impulse);
+                animationControllerScript.PlayerJumpAnimation();
+            }
         }
+        #region 
+        //if (fixedJoystick.Vertical > 0.1f) transform.Translate(Vector3.up * Time.deltaTime * speed * fixedJoystick.Vertical);
+        //else if (fixedJoystick.Vertical < -0.1f) transform.Translate(Vector3.down * Time.deltaTime * speed * fixedJoystick.Vertical);
+
+        //if (Input.GetKeyDown(KeyCode.H))
+        //{
+        //    joystickScript.axisOptions = AxisOptions.Horizontal;
+        //}
+        //if (Input.GetKeyDown(KeyCode.V))
+        //{
+        //    joystickScript.axisOptions = AxisOptions.Vertical;
+        //}
+        #endregion
     }
 }

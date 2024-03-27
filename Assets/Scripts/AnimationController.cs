@@ -16,6 +16,10 @@ public class AnimationController : MonoBehaviour
     }
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            playerAnimator.SetBool("Dead 0", true);
+        }
         if (fixedJoystick.Horizontal > deadZoneOffset || fixedJoystick.Horizontal < -deadZoneOffset)
         {
             if (fixedJoystick.Horizontal > runningOffset || fixedJoystick.Horizontal < -runningOffset)
@@ -28,7 +32,6 @@ public class AnimationController : MonoBehaviour
                 playerAnimator.SetBool("Walk", true);
                 playerAnimator.SetBool("Run", false);
             }
-
         }
         else
         {
@@ -40,6 +43,10 @@ public class AnimationController : MonoBehaviour
     {
         playerAnimator.SetTrigger("Jump");
         IsGrounded = false;
+    }
+    public void AttackAnimation()
+    {
+        playerAnimator.SetTrigger("Attack");
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

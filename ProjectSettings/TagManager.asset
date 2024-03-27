@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Ground
   - Water
+  - Door
+  - Chest
+  - BouncePad
+  - CampFire
+  - Stairs
   layers:
   - Default
   - TransparentFX

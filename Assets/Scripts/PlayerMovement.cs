@@ -36,19 +36,8 @@ public class PlayerMovement : MonoBehaviour
                 animationControllerScript.JumpAnimation();
             }
         }
-        #region 
-        //if (fixedJoystick.Vertical > 0.1f) transform.Translate(Vector3.up * Time.deltaTime * speed * fixedJoystick.Vertical);
-        //else if (fixedJoystick.Vertical < -0.1f) transform.Translate(Vector3.down * Time.deltaTime * speed * fixedJoystick.Vertical);
-
-        //if (Input.GetKeyDown(KeyCode.H))
-        //{
-        //    joystickScript.axisOptions = AxisOptions.Horizontal;
-        //}
-        //if (Input.GetKeyDown(KeyCode.V))
-        //{
-        //    joystickScript.axisOptions = AxisOptions.Vertical;
-        //}
-        #endregion
+        if (fixedJoystick.Vertical > 0.1f) transform.position += new Vector3(0, fixedJoystick.Vertical * speed * Time.deltaTime, 0);
+        else if (fixedJoystick.Vertical < -0.1f) transform.position += new Vector3(0, fixedJoystick.Vertical * speed * Time.deltaTime, 0);
     }
     public void playerJump()
     {

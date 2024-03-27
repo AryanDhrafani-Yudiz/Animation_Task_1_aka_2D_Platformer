@@ -6,6 +6,8 @@ public class AnimationController : MonoBehaviour
     private Animator playerAnimator;
     private Rigidbody2D playerRigidBody;
     public bool IsGrounded;
+    private float deadZoneOffset = 0.1f;
+    private float runningOffset = 0.7f;
 
     void Start()
     {
@@ -14,16 +16,27 @@ public class AnimationController : MonoBehaviour
     }
     void Update()
     {
-        if (fixedJoystick.Horizontal != 0)
+        if (fixedJoystick.Horizontal > deadZoneOffset || fixedJoystick.Horizontal < -deadZoneOffset)
         {
-            playerAnimator.SetBool("Walk", true);
+            if (fixedJoystick.Horizontal > runningOffset || fixedJoystick.Horizontal < -runningOffset)
+            {
+                playerAnimator.SetBool("Run", true);
+                playerAnimator.SetBool("Walk", false);
+            }
+            else
+            {
+                playerAnimator.SetBool("Walk", true);
+                playerAnimator.SetBool("Run", false);
+            }
+
         }
         else
         {
             playerAnimator.SetBool("Walk", false);
+            playerAnimator.SetBool("Run", false);
         }
     }
-    public void PlayerJumpAnimation()
+    public void JumpAnimation()
     {
         playerAnimator.SetTrigger("Jump");
         IsGrounded = false;

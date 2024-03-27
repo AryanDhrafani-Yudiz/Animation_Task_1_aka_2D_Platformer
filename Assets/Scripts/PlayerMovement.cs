@@ -28,12 +28,12 @@ public class PlayerMovement : MonoBehaviour
             transform.position += new Vector3(fixedJoystick.Horizontal * speed * Time.deltaTime, 0, 0);
             //transform.Translate(fixedJoystick.Horizontal * Time.deltaTime * speed, 0, 0);
         }
-        if (animationControllerScript.IsGrounded)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (animationControllerScript.IsGrounded)
             {
                 rb.AddForce(jumpDir, ForceMode2D.Impulse);
-                animationControllerScript.PlayerJumpAnimation();
+                animationControllerScript.JumpAnimation();
             }
         }
         #region 
@@ -49,5 +49,13 @@ public class PlayerMovement : MonoBehaviour
         //    joystickScript.axisOptions = AxisOptions.Vertical;
         //}
         #endregion
+    }
+    public void playerJump()
+    {
+        if (animationControllerScript.IsGrounded)
+        {
+            rb.AddForce(jumpDir, ForceMode2D.Impulse);
+            animationControllerScript.JumpAnimation();
+        }
     }
 }

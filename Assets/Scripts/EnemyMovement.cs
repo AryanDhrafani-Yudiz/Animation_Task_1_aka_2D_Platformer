@@ -1,9 +1,11 @@
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] private float distanceToPatrol;
-    [SerializeField] private float speed;
+    [SerializeField] private float patrolSpeed;
+    [SerializeField] private float chaseSpeed;
     private Vector3 startingPosition;
     [SerializeField] private Animator enemyAnimator;
 
@@ -15,7 +17,7 @@ public class EnemyMovement : MonoBehaviour
     }
     private void Update()
     {
-        if (Mathf.Abs(playerTransform.position.y - transform.position.y) < 0.1f)
+        if (Mathf.Abs(playerTransform.position.y - transform.position.y) < 0.1f && Mathf.Abs(playerTransform.position.x - transform.position.x) < 7f)
         {
             ChasePlayer();
         }
@@ -23,7 +25,7 @@ public class EnemyMovement : MonoBehaviour
     }
     void Patrol()
     {
-        transform.Translate(speed * Time.deltaTime, 0, 0);
+        transform.Translate(patrolSpeed * Time.deltaTime, 0, 0);
         enemyAnimator.SetBool("Run", true);
         if (transform.position.x > startingPosition.x + distanceToPatrol)
         {
@@ -36,9 +38,17 @@ public class EnemyMovement : MonoBehaviour
     }
     void ChasePlayer()
     {
-        if (Mathf.Abs(playerTransform.position.x - transform.position.x) < 5f)
+        if (Mathf.Abs(playerTransform.position.x - transform.position.x) > 1f)
         {
-            transform.Translate(playerTransform.position.x * speed * Time.deltaTime, 0, 0);
+            if (playerTransform.position.x - transform.position.x > 0f) transform.rotation = Quaternion.Euler(Vector3.zero);
+            else transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(playerTransform.position.x, transform.position.y), chaseSpeed * Time.deltaTime);
         }
+        else AttackPlayer();
+    }
+    void AttackPlayer()
+    {
+        enemyAnimator.SetBool("Run", false);
+        enemyAnimator.SetTrigger("Attack");
     }
 }

@@ -10,7 +10,7 @@ TagManager:
   - Chest
   - BouncePad
   - CampFire
-  - Stairs
+  - Ladder
   layers:
   - Default
   - TransparentFX

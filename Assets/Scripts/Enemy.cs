@@ -4,6 +4,7 @@ public class Enemy : MonoBehaviour
 {
     private int currentHealth;
     [SerializeField] private int maxHealth = 100;
+
     [SerializeField] private Animator animationController;
 
     void Start()

@@ -38,6 +38,10 @@ public class ObjectInteractions : MonoBehaviour
             playerRigidBody.gravityScale = 0;
             playerRigidBody.velocity = Vector2.zero;
         }
+        if (collision.gameObject.CompareTag("Water"))
+        {
+
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {

@@ -11,6 +11,13 @@ public class EnemyMovement : MonoBehaviour
 
     [SerializeField] private Transform playerTransform;
 
+
+    private float nextAttackTime = 0f;
+    [SerializeField] private float attackRate = 2f;
+    [SerializeField] private Transform attackPoint;
+    [SerializeField] private float attackRange = 0.5f;
+    [SerializeField] private LayerMask playerLayers;
+    [SerializeField] private int attackDamage = 20;
     private void Start()
     {
         startingPosition = transform.position;
@@ -44,11 +51,22 @@ public class EnemyMovement : MonoBehaviour
             else transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(playerTransform.position.x, transform.position.y), chaseSpeed * Time.deltaTime);
         }
-        else AttackPlayer();
+        else Attack();
     }
-    void AttackPlayer()
+    public void Attack()
     {
         enemyAnimator.SetBool("Run", false);
-        enemyAnimator.SetTrigger("Attack");
+        if (Time.time >= nextAttackTime)
+        {
+            enemyAnimator.SetTrigger("Attack");
+
+            Collider2D[] playersHit = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayers);
+
+            foreach (Collider2D player in playersHit)
+            {
+                player.GetComponent<PlayerBehaviour>().takeDamage(attackDamage);
+            }
+            nextAttackTime = Time.time + 1f / attackRate;
+        }
     }
 }

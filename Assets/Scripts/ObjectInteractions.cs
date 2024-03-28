@@ -41,6 +41,7 @@ public class ObjectInteractions : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Water"))
         {
+            Time.timeScale = 1;
             SceneManager.LoadSceneAsync(0);
         }
     }

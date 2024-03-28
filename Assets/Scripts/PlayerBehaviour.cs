@@ -1,11 +1,12 @@
 using UnityEngine;
 
-public class PlayerBehaviour : MonoBehaviour
+public class PlayerBehaviour : MonoBehaviour, IDamageable
 {
     private Rigidbody2D rb;
     private bool IsGrounded;
     [SerializeField] private Vector2 jumpDir;
     [SerializeField] private AnimationController animationControllerScript;
+    private Animator playerAnimator;
 
     private float nextAttackTime = 0f;
     [SerializeField] private float attackRate = 2f;
@@ -14,9 +15,14 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private LayerMask enemyLayers;
     [SerializeField] private int attackDamage = 20;
 
-    private void Awake()
+    public int currentHealth { get; set; }
+    public int maxHealth { get; set; }
+    private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        playerAnimator = GetComponent<Animator>();
+        maxHealth = 100;
+        currentHealth = maxHealth;
     }
     private void FixedUpdate()
     {
@@ -44,6 +50,23 @@ public class PlayerBehaviour : MonoBehaviour
             rb.AddForce(jumpDir, ForceMode2D.Impulse);
             animationControllerScript.JumpAnimation();
         }
+    }
+    public void takeDamage(int damage)
+    {
+        currentHealth -= damage;
+        playerAnimator.SetTrigger("Hurt");
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+    void Die()
+    {
+        playerAnimator.SetBool("Dead 0", true);
+
+        GetComponent<Rigidbody2D>().isKinematic = true;
+        GetComponent<Collider2D>().enabled = false;
+        this.enabled = false;
     }
     private void OnDrawGizmosSelected()
     {

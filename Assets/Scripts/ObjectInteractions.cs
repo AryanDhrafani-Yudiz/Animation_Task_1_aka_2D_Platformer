@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class ObjectInteractions : MonoBehaviour
 {
@@ -9,7 +8,7 @@ public class ObjectInteractions : MonoBehaviour
     [SerializeField] private Joystick joystickScript;
     [SerializeField] private float amountOfBounce;
     private Rigidbody2D playerRigidBody;
-
+    [SerializeField] private UIManager uiScript;
     private void Start()
     {
         playerRigidBody = GetComponent<Rigidbody2D>();
@@ -41,8 +40,7 @@ public class ObjectInteractions : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Water"))
         {
-            Time.timeScale = 1;
-            SceneManager.LoadSceneAsync(0);
+            uiScript.OnGameOverScreen();
         }
     }
     private void OnTriggerExit2D(Collider2D collision)

@@ -7138,7 +7138,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceToPatrol: 3
-  speed: 1
+  speed: 0.7
+  enemyAnimator: {fileID: 906012790}
+  playerTransform: {fileID: 3090580207257151073}
 --- !u!1 &1001185305
 GameObject:
   m_ObjectHideFlags: 0

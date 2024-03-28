@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ObjectInteractions : MonoBehaviour
 {
@@ -40,7 +41,7 @@ public class ObjectInteractions : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Water"))
         {
-
+            SceneManager.LoadSceneAsync(0);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)

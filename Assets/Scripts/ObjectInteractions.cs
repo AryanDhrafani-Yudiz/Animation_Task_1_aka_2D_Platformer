@@ -36,6 +36,7 @@ public class ObjectInteractions : MonoBehaviour
         {
             joystickScript.axisOptions = AxisOptions.Both;
             playerRigidBody.gravityScale = 0;
+            playerRigidBody.velocity = Vector2.zero;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)

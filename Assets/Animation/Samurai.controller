@@ -639,13 +639,13 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -7668898540492981397}
-    m_Position: {x: 500, y: -100, z: 0}
+    m_Position: {x: 370, y: -10, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1345124552503334514}
-    m_Position: {x: 290, y: 210, z: 0}
+    m_Position: {x: 670, y: -100, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7599432197735769715}
-    m_Position: {x: 340, y: -10, z: 0}
+    m_Position: {x: 370, y: -90, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4457200428440120431}
     m_Position: {x: 440, y: 100, z: 0}

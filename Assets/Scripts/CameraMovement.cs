@@ -6,6 +6,10 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private float dampTime; //offset from the viewport center to fix damping
     [SerializeField] private Transform target;
 
+    private void Awake()
+    {
+        Application.targetFrameRate = 120;
+    }
     private void LateUpdate()
     {
         if (target)

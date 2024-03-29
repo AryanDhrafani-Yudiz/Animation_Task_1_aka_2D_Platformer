@@ -2,19 +2,17 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
-    //private int currentHealth;
-    //[SerializeField] private int maxHealth = 100;
-
     public int currentHealth { get; set; }
     public int maxHealth { get; set; }
     [SerializeField] private Animator animationController;
 
     [SerializeField] private Transform attackPoint;
     [SerializeField] private float attackRange = 0.5f;
+    [SerializeField] private int maxHealthOfEnemy;
 
     void Start()
     {
-        maxHealth = 50;
+        maxHealth = maxHealthOfEnemy;
         currentHealth = maxHealth;
     }
     public void takeDamage(int damage)

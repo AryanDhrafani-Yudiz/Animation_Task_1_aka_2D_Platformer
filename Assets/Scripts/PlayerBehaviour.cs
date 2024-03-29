@@ -20,7 +20,6 @@ public class PlayerBehaviour : MonoBehaviour, IDamageable
     public int currentHealth { get; set; }
     public int maxHealth { get; set; }
 
-    [SerializeField] private Canvas gameplayCanvas;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();

@@ -7883,7 +7883,7 @@ Transform:
   m_GameObject: {fileID: 906012787}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -0.23, y: 5.07, z: 0}
+  m_LocalPosition: {x: -0.23, y: 5.029, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7905,6 +7905,7 @@ MonoBehaviour:
   animationController: {fileID: 906012790}
   attackPoint: {fileID: 1312781115}
   attackRange: 0.5
+  maxHealthOfEnemy: 50
 --- !u!114 &906012794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8260,6 +8261,7 @@ MonoBehaviour:
   animationController: {fileID: 1064922904}
   attackPoint: {fileID: 1421761480}
   attackRange: 0.5
+  maxHealthOfEnemy: 50
 --- !u!61 &1064922902
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8414,7 +8416,7 @@ Transform:
   m_GameObject: {fileID: 1064922899}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.35, y: 15.37, z: 0}
+  m_LocalPosition: {x: 14.35, y: 15.032, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15651,7 +15653,7 @@ Transform:
   m_GameObject: {fileID: 7171572698826135718}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.38, y: 5.51, z: 0}
+  m_LocalPosition: {x: -7.49, y: -0.98, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15854,7 +15856,6 @@ MonoBehaviour:
     m_Bits: 64
   attackDamage: 50
   maxHealthOfPlayer: 100
-  gameplayCanvas: {fileID: 262970658}
 --- !u!114 &7171572698826135723
 MonoBehaviour:
   m_ObjectHideFlags: 0

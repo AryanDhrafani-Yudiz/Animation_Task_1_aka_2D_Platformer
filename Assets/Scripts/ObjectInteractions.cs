@@ -19,6 +19,10 @@ public class ObjectInteractions : MonoBehaviour
         {
             playerRigidBody.velocity += new Vector2(playerRigidBody.velocity.x, amountOfBounce);
         }
+        if (collision.gameObject.CompareTag("BouncePadExtreme"))
+        {
+            playerRigidBody.velocity += new Vector2(playerRigidBody.velocity.x, amountOfBounce * 2);
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

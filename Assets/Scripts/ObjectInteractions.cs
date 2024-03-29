@@ -40,6 +40,7 @@ public class ObjectInteractions : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Water"))
         {
+            Time.timeScale = 0;
             uiScript.OnGameOverScreen();
         }
         if (collision.gameObject.CompareTag("CampFire")) GetComponent<PlayerBehaviour>().currentHealth = GetComponent<PlayerBehaviour>().maxHealth;

@@ -7902,10 +7902,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 283cfa778eaf74c84ba36d75e5816e4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealthOfEnemy: 70
   animationController: {fileID: 906012790}
+  attackRate: 2
   attackPoint: {fileID: 1312781115}
   attackRange: 0.5
-  maxHealthOfEnemy: 50
+  playerLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  attackDamage: 20
 --- !u!114 &906012794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7921,15 +7926,7 @@ MonoBehaviour:
   distanceToPatrol: 3
   patrolSpeed: 0.3
   chaseSpeed: 0.7
-  enemyAnimator: {fileID: 906012790}
   playerTransform: {fileID: 3090580207257151073}
-  attackRate: 1
-  attackPoint: {fileID: 1312781115}
-  attackRange: 0.5
-  playerLayers:
-    serializedVersion: 2
-    m_Bits: 128
-  attackDamage: 10
 --- !u!1 &1001185305
 GameObject:
   m_ObjectHideFlags: 0
@@ -8237,15 +8234,7 @@ MonoBehaviour:
   distanceToPatrol: 3
   patrolSpeed: 0.3
   chaseSpeed: 0.7
-  enemyAnimator: {fileID: 1064922904}
   playerTransform: {fileID: 3090580207257151073}
-  attackRate: 1
-  attackPoint: {fileID: 1421761480}
-  attackRange: 0.5
-  playerLayers:
-    serializedVersion: 2
-    m_Bits: 128
-  attackDamage: 10
 --- !u!114 &1064922901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8258,10 +8247,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 283cfa778eaf74c84ba36d75e5816e4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealthOfEnemy: 70
   animationController: {fileID: 1064922904}
+  attackRate: 2
   attackPoint: {fileID: 1421761480}
   attackRange: 0.5
-  maxHealthOfEnemy: 50
+  playerLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  attackDamage: 20
 --- !u!61 &1064922902
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12900,8 +12894,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7171572698826135722}
-        m_TargetAssemblyTypeName: PlayerBehaviour, Assembly-CSharp
+      - m_Target: {fileID: 7171572698826135719}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
         m_MethodName: playerJump
         m_Mode: 1
         m_Arguments:
@@ -15653,7 +15647,7 @@ Transform:
   m_GameObject: {fileID: 7171572698826135718}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.77, y: -0.99, z: 0}
+  m_LocalPosition: {x: -8.31, y: -0.96, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15814,8 +15808,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 486b42f39b6234e85ad873d58d2e76be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpDir: {x: 0, y: 5}
   speed: 3
   fixedJoystick: {fileID: 2929252284142587954}
+  animationControllerScript: {fileID: 7171572698826135723}
 --- !u!114 &7171572698826135721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15845,7 +15841,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0252fd42af3a437db075f70dca47a07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpDir: {x: 0, y: 5}
   animationControllerScript: {fileID: 7171572698826135723}
   uiManagerScript: {fileID: 515119747}
   attackRate: 2
@@ -15854,7 +15849,7 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 64
-  attackDamage: 50
+  attackDamage: 20
   maxHealthOfPlayer: 100
 --- !u!114 &7171572698826135723
 MonoBehaviour:

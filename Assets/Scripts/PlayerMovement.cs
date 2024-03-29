@@ -2,9 +2,21 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private Rigidbody2D rb;
+    private bool IsGrounded;
+    [SerializeField] private Vector2 jumpDir;
     [SerializeField] private float speed;
     [SerializeField] private FixedJoystick fixedJoystick;
+    [SerializeField] private AnimationController animationControllerScript;
 
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+    private void FixedUpdate()
+    {
+        IsGrounded = Physics2D.Raycast(transform.position, Vector3.down, 0.07f, 1 << 3); // To Check If Player Can Jump Or Not Based On Is He/She On Ground
+    }
     void Update()
     {
         if (fixedJoystick.Horizontal > 0.1f)
@@ -19,5 +31,13 @@ public class PlayerMovement : MonoBehaviour
         }
         if (fixedJoystick.Vertical > 0.1f) transform.position += new Vector3(0, fixedJoystick.Vertical * speed * Time.deltaTime, 0);
         else if (fixedJoystick.Vertical < -0.1f) transform.position += new Vector3(0, fixedJoystick.Vertical * speed * Time.deltaTime, 0);
+    }
+    public void playerJump()
+    {
+        if (IsGrounded)
+        {
+            rb.AddForce(jumpDir, ForceMode2D.Impulse);
+            animationControllerScript.JumpAnimation();
+        }
     }
 }

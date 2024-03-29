@@ -2,9 +2,6 @@ using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour, IDamageable
 {
-    private Rigidbody2D rb;
-    private bool IsGrounded;
-    [SerializeField] private Vector2 jumpDir;
     [SerializeField] private AnimationController animationControllerScript;
     [SerializeField] private UIManager uiManagerScript;
     private Animator playerAnimator;
@@ -22,14 +19,9 @@ public class PlayerBehaviour : MonoBehaviour, IDamageable
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
         maxHealth = maxHealthOfPlayer;
         currentHealth = maxHealth;
-    }
-    private void FixedUpdate()
-    {
-        IsGrounded = Physics2D.Raycast(transform.position, Vector3.down, 0.07f, 1 << 3); // To Check If Player Can Jump Or Not Based On Is He/She On Ground
     }
     public void Attack()
     {
@@ -44,14 +36,6 @@ public class PlayerBehaviour : MonoBehaviour, IDamageable
                 enemy.GetComponent<IDamageable>().takeDamage(attackDamage);
             }
             nextAttackTime = Time.time + 1f / attackRate;
-        }
-    }
-    public void playerJump()
-    {
-        if (IsGrounded)
-        {
-            rb.AddForce(jumpDir, ForceMode2D.Impulse);
-            animationControllerScript.JumpAnimation();
         }
     }
     public void takeDamage(int damage)

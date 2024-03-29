@@ -17,6 +17,7 @@ public class UIManager : MonoBehaviour
 
     void Awake()
     {
+        Time.timeScale = 1;
         StartingScreenCanvas.enabled = true;
         GamePlayCanvas.enabled = false;
         SettingsCanvas.enabled = false;

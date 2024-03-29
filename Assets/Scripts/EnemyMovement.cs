@@ -65,10 +65,10 @@ public class EnemyMovement : MonoBehaviour
 
             foreach (Collider2D player in playersHit)
             {
-                if (player.GetComponent<PlayerBehaviour>().currentHealth > 0)
+                if (player.GetComponent<IDamageable>().currentHealth > 0)
                 {
-                    player.GetComponent<PlayerBehaviour>().takeDamage(attackDamage);
                     enemyAnimator.SetTrigger("Attack");
+                    player.GetComponent<IDamageable>().takeDamage(attackDamage);
                 }
             }
             nextAttackTime = Time.time + 1f / attackRate;

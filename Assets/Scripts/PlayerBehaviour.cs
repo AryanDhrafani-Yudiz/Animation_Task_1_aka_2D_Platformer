@@ -6,6 +6,7 @@ public class PlayerBehaviour : MonoBehaviour, IDamageable
     private bool IsGrounded;
     [SerializeField] private Vector2 jumpDir;
     [SerializeField] private AnimationController animationControllerScript;
+    [SerializeField] private UIManager uiManagerScript;
     private Animator playerAnimator;
 
     private float nextAttackTime = 0f;
@@ -15,18 +16,21 @@ public class PlayerBehaviour : MonoBehaviour, IDamageable
     [SerializeField] private LayerMask enemyLayers;
     [SerializeField] private int attackDamage = 20;
 
+    [SerializeField] private int maxHealthOfPlayer;
     public int currentHealth { get; set; }
     public int maxHealth { get; set; }
+
+    [SerializeField] private Canvas gameplayCanvas;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
-        maxHealth = 100;
+        maxHealth = maxHealthOfPlayer;
         currentHealth = maxHealth;
     }
     private void FixedUpdate()
     {
-        IsGrounded = Physics2D.Raycast(transform.position, Vector3.down, 0.07f, 1 << 3);
+        IsGrounded = Physics2D.Raycast(transform.position, Vector3.down, 0.07f, 1 << 3); // To Check If Player Can Jump Or Not Based On Is He/She On Ground
     }
     public void Attack()
     {
@@ -38,7 +42,7 @@ public class PlayerBehaviour : MonoBehaviour, IDamageable
 
             foreach (Collider2D enemy in enemiesHit)
             {
-                enemy.GetComponent<Enemy>().takeDamage(attackDamage);
+                enemy.GetComponent<IDamageable>().takeDamage(attackDamage);
             }
             nextAttackTime = Time.time + 1f / attackRate;
         }
@@ -66,6 +70,7 @@ public class PlayerBehaviour : MonoBehaviour, IDamageable
 
         GetComponent<Rigidbody2D>().isKinematic = true;
         GetComponent<Collider2D>().enabled = false;
+        uiManagerScript.OnGameOverScreen();
         this.enabled = false;
     }
     private void OnDrawGizmosSelected()

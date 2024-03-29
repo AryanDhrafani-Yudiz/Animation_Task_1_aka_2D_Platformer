@@ -36,7 +36,8 @@ public class EnemyMovement : MonoBehaviour
     void Patrol()
     {
         transform.Translate(patrolSpeed * Time.deltaTime, 0, 0);
-        enemyAnimator.SetBool("Run", true);
+        enemyAnimator.SetBool("Walk", true);
+        enemyAnimator.SetBool("Run", false);
         if (transform.position.x > startingPosition.x + distanceToPatrol)
         {
             transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
@@ -48,6 +49,8 @@ public class EnemyMovement : MonoBehaviour
     }
     void ChasePlayer()
     {
+        enemyAnimator.SetBool("Walk", false);
+        enemyAnimator.SetBool("Run", true);
         if (Mathf.Abs(playerTransform.position.x - transform.position.x) > 1f)
         {
             if (playerTransform.position.x - transform.position.x > 0f) transform.rotation = Quaternion.Euler(Vector3.zero);
@@ -58,6 +61,7 @@ public class EnemyMovement : MonoBehaviour
     }
     public void Attack()
     {
+        enemyAnimator.SetBool("Walk", false);
         enemyAnimator.SetBool("Run", false);
         if (Time.time >= nextAttackTime)
         {

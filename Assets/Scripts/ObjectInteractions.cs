@@ -11,6 +11,7 @@ public class ObjectInteractions : MonoBehaviour
     [SerializeField] private float amountOfBounce;
     private Rigidbody2D playerRigidBody;
     [SerializeField] private UIManager uiScript;
+    [SerializeField] private PlayerBehaviour playerBehaviourScript;
     private void Start()
     {
         playerRigidBody = GetComponent<Rigidbody2D>();
@@ -20,10 +21,12 @@ public class ObjectInteractions : MonoBehaviour
         if (collision.gameObject.CompareTag("BouncePad"))
         {
             playerRigidBody.velocity += new Vector2(playerRigidBody.velocity.x, amountOfBounce);
+            SoundManager.Instance.onBouncePadSound();
         }
         if (collision.gameObject.CompareTag("BouncePadExtreme"))
         {
             playerRigidBody.velocity += new Vector2(playerRigidBody.velocity.x, amountOfBounce * 2);
+            SoundManager.Instance.onBouncePadSound();
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -32,6 +35,7 @@ public class ObjectInteractions : MonoBehaviour
         {
             currentSpriteRenderer = collision.gameObject.GetComponent<SpriteRenderer>();
             currentSpriteRenderer.sprite = doorOpened;
+            SoundManager.Instance.onDoorOpenSound();
         }
         if (collision.gameObject.CompareTag("NextLevelDoor"))
         {
@@ -41,6 +45,7 @@ public class ObjectInteractions : MonoBehaviour
         {
             currentSpriteRenderer = collision.gameObject.GetComponent<SpriteRenderer>();
             currentSpriteRenderer.sprite = chestOpened;
+            SoundManager.Instance.onChestOpenSound();
         }
         if (collision.gameObject.CompareTag("Ladder"))
         {
@@ -52,8 +57,9 @@ public class ObjectInteractions : MonoBehaviour
         {
             Time.timeScale = 0;
             uiScript.OnGameOverScreen();
+            SoundManager.Instance.onGameOverSound();
         }
-        if (collision.gameObject.CompareTag("CampFire")) GetComponent<PlayerBehaviour>().currentHealth = GetComponent<PlayerBehaviour>().maxHealth;
+        if (collision.gameObject.CompareTag("CampFire")) playerBehaviourScript.currentHealth = playerBehaviourScript.maxHealth; playerBehaviourScript.UpdateHP();
     }
     IEnumerator LoadYourAsyncScene()
     {

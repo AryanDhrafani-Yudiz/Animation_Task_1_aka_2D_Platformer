@@ -24,7 +24,7 @@ public class PlayerBehaviour : MonoBehaviour, IDamageable
         playerAnimator = GetComponent<Animator>();
         maxHealth = maxHealthOfPlayer;
         currentHealth = maxHealth;
-        hpObject.text = currentHealth.ToString();
+        UpdateHP();
     }
     public void Attack()
     {
@@ -44,8 +44,8 @@ public class PlayerBehaviour : MonoBehaviour, IDamageable
     public void takeDamage(int damage)
     {
         currentHealth -= damage;
-        hpObject.text = currentHealth.ToString();
         playerAnimator.SetTrigger("Hurt");
+        UpdateHP();
         if (currentHealth <= 0)
         {
             Die();
@@ -59,6 +59,10 @@ public class PlayerBehaviour : MonoBehaviour, IDamageable
         GetComponent<Collider2D>().enabled = false;
         uiManagerScript.OnGameOverScreen();
         this.enabled = false;
+    }
+    public void UpdateHP()
+    {
+        hpObject.text = currentHealth.ToString();
     }
     private void OnDrawGizmosSelected()
     {

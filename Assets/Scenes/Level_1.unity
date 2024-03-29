@@ -7918,17 +7918,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceToPatrol: 3
-  patrolSpeed: 0.5
-  chaseSpeed: 1
+  patrolSpeed: 0.3
+  chaseSpeed: 0.7
   enemyAnimator: {fileID: 906012790}
   playerTransform: {fileID: 3090580207257151073}
-  attackRate: 3
+  attackRate: 1
   attackPoint: {fileID: 1312781115}
   attackRange: 0.5
   playerLayers:
     serializedVersion: 2
     m_Bits: 128
-  attackDamage: 20
+  attackDamage: 10
 --- !u!1 &1001185305
 GameObject:
   m_ObjectHideFlags: 0
@@ -8234,17 +8234,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceToPatrol: 3
-  patrolSpeed: 0.5
-  chaseSpeed: 1
+  patrolSpeed: 0.3
+  chaseSpeed: 0.7
   enemyAnimator: {fileID: 1064922904}
   playerTransform: {fileID: 3090580207257151073}
-  attackRate: 3
+  attackRate: 1
   attackPoint: {fileID: 1421761480}
   attackRange: 0.5
   playerLayers:
     serializedVersion: 2
     m_Bits: 128
-  attackDamage: 20
+  attackDamage: 10
 --- !u!114 &1064922901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14430,7 +14430,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1866532505}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -15651,7 +15651,7 @@ Transform:
   m_GameObject: {fileID: 7171572698826135718}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.07, y: 4.23, z: 0}
+  m_LocalPosition: {x: -7.64, y: -0.9, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15851,7 +15851,7 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 64
-  attackDamage: 30
+  attackDamage: 50
 --- !u!114 &7171572698826135723
 MonoBehaviour:
   m_ObjectHideFlags: 0

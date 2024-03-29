@@ -1,5 +1,4 @@
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -18,17 +17,21 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float attackRange = 0.5f;
     [SerializeField] private LayerMask playerLayers;
     [SerializeField] private int attackDamage = 20;
+
     private void Start()
     {
         startingPosition = transform.position;
     }
     private void Update()
     {
-        if (Mathf.Abs(playerTransform.position.y - transform.position.y) < 0.1f && Mathf.Abs(playerTransform.position.x - transform.position.x) < 7f)
+        if (GetComponent<Enemy>().currentHealth > 0)
         {
-            ChasePlayer();
+            if (Mathf.Abs(playerTransform.position.y - transform.position.y) < 0.1f && Mathf.Abs(playerTransform.position.x - transform.position.x) < 7f)
+            {
+                ChasePlayer();
+            }
+            else Patrol();
         }
-        else Patrol();
     }
     void Patrol()
     {
@@ -58,13 +61,15 @@ public class EnemyMovement : MonoBehaviour
         enemyAnimator.SetBool("Run", false);
         if (Time.time >= nextAttackTime)
         {
-            enemyAnimator.SetTrigger("Attack");
-
             Collider2D[] playersHit = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayers);
 
             foreach (Collider2D player in playersHit)
             {
-                player.GetComponent<PlayerBehaviour>().takeDamage(attackDamage);
+                if (player.GetComponent<PlayerBehaviour>().currentHealth > 0)
+                {
+                    player.GetComponent<PlayerBehaviour>().takeDamage(attackDamage);
+                    enemyAnimator.SetTrigger("Attack");
+                }
             }
             nextAttackTime = Time.time + 1f / attackRate;
         }

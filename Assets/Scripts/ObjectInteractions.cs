@@ -42,6 +42,7 @@ public class ObjectInteractions : MonoBehaviour
         {
             uiScript.OnGameOverScreen();
         }
+        if (collision.gameObject.CompareTag("CampFire")) GetComponent<PlayerBehaviour>().currentHealth = GetComponent<PlayerBehaviour>().maxHealth;
     }
     private void OnTriggerExit2D(Collider2D collision)
     {

@@ -1,10 +1,12 @@
 using UnityEngine;
+using TMPro;
 
 public class PlayerBehaviour : MonoBehaviour, IDamageable
 {
     [SerializeField] private AnimationController animationControllerScript;
     [SerializeField] private UIManager uiManagerScript;
     private Animator playerAnimator;
+    [SerializeField] TextMeshProUGUI hpObject;
 
     private float nextAttackTime = 0f;
     [SerializeField] private float attackRate = 2f;
@@ -22,6 +24,7 @@ public class PlayerBehaviour : MonoBehaviour, IDamageable
         playerAnimator = GetComponent<Animator>();
         maxHealth = maxHealthOfPlayer;
         currentHealth = maxHealth;
+        hpObject.text = currentHealth.ToString();
     }
     public void Attack()
     {
@@ -41,6 +44,7 @@ public class PlayerBehaviour : MonoBehaviour, IDamageable
     public void takeDamage(int damage)
     {
         currentHealth -= damage;
+        hpObject.text = currentHealth.ToString();
         playerAnimator.SetTrigger("Hurt");
         if (currentHealth <= 0)
         {

@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class ObjectInteractions : MonoBehaviour
 {
@@ -31,6 +33,10 @@ public class ObjectInteractions : MonoBehaviour
             currentSpriteRenderer = collision.gameObject.GetComponent<SpriteRenderer>();
             currentSpriteRenderer.sprite = doorOpened;
         }
+        if (collision.gameObject.CompareTag("NextLevelDoor"))
+        {
+            StartCoroutine(LoadYourAsyncScene());
+        }
         if (collision.gameObject.CompareTag("Chest"))
         {
             currentSpriteRenderer = collision.gameObject.GetComponent<SpriteRenderer>();
@@ -48,6 +54,16 @@ public class ObjectInteractions : MonoBehaviour
             uiScript.OnGameOverScreen();
         }
         if (collision.gameObject.CompareTag("CampFire")) GetComponent<PlayerBehaviour>().currentHealth = GetComponent<PlayerBehaviour>().maxHealth;
+    }
+    IEnumerator LoadYourAsyncScene()
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(1, LoadSceneMode.Single);
+        Time.timeScale = 1;
+
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {

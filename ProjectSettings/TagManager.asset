@@ -12,6 +12,7 @@ TagManager:
   - CampFire
   - Ladder
   - BouncePadExtreme
+  - NextLevelDoor
   layers:
   - Default
   - TransparentFX

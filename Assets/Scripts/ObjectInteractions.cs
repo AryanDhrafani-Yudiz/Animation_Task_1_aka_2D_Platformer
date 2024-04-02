@@ -1,6 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using System.Collections;
 
 public class ObjectInteractions : MonoBehaviour
 {
@@ -12,6 +10,8 @@ public class ObjectInteractions : MonoBehaviour
     private Rigidbody2D playerRigidBody;
     [SerializeField] private UIManager uiScript;
     [SerializeField] private PlayerBehaviour playerBehaviourScript;
+    [SerializeField] private SceneLoader sceneLoaderScript;
+
     private void Start()
     {
         playerRigidBody = GetComponent<Rigidbody2D>();
@@ -39,7 +39,7 @@ public class ObjectInteractions : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("NextLevelDoor"))
         {
-            StartCoroutine(LoadYourAsyncScene());
+            sceneLoaderScript.LoadNextLevel();
         }
         if (collision.gameObject.CompareTag("Chest"))
         {
@@ -61,16 +61,7 @@ public class ObjectInteractions : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("CampFire")) playerBehaviourScript.currentHealth = playerBehaviourScript.maxHealth; playerBehaviourScript.UpdateHP();
     }
-    IEnumerator LoadYourAsyncScene()
-    {
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(1, LoadSceneMode.Single);
-        Time.timeScale = 1;
 
-        while (!asyncLoad.isDone)
-        {
-            yield return null;
-        }
-    }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Ladder"))

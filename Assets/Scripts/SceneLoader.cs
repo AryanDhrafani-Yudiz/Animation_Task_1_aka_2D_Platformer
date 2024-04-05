@@ -18,7 +18,7 @@ public class SceneLoader : MonoBehaviour
     void Update()
     {
         //progressBar.value = Mathf.Clamp01(asyncLoad.progress / 0.9f);
-        //Debug.Log(progressBar.value);
+        Debug.Log(progressBar.value);
     }
     public void LoadNextLevel()
     {

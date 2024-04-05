@@ -23,7 +23,7 @@ public class ObjectInteractions : MonoBehaviour
             playerRigidBody.velocity += new Vector2(playerRigidBody.velocity.x, amountOfBounce);
             SoundManager.Instance.onBouncePadSound();
         }
-        if (collision.gameObject.CompareTag("BouncePadExtreme"))
+        else if (collision.gameObject.CompareTag("BouncePadExtreme"))
         {
             playerRigidBody.velocity += new Vector2(playerRigidBody.velocity.x, amountOfBounce * 2);
             SoundManager.Instance.onBouncePadSound();
@@ -37,29 +37,29 @@ public class ObjectInteractions : MonoBehaviour
             currentSpriteRenderer.sprite = doorOpened;
             SoundManager.Instance.onDoorOpenSound();
         }
-        if (collision.gameObject.CompareTag("NextLevelDoor"))
+        else if (collision.gameObject.CompareTag("NextLevelDoor"))
         {
             sceneLoaderScript.LoadNextLevel();
         }
-        if (collision.gameObject.CompareTag("Chest"))
+        else if (collision.gameObject.CompareTag("Chest"))
         {
             currentSpriteRenderer = collision.gameObject.GetComponent<SpriteRenderer>();
             currentSpriteRenderer.sprite = chestOpened;
             SoundManager.Instance.onChestOpenSound();
         }
-        if (collision.gameObject.CompareTag("Ladder"))
+        else if (collision.gameObject.CompareTag("Ladder"))
         {
             joystickScript.axisOptions = AxisOptions.Both;
             playerRigidBody.gravityScale = 0;
             playerRigidBody.velocity = Vector2.zero;
         }
-        if (collision.gameObject.CompareTag("Water"))
+        else if (collision.gameObject.CompareTag("Water"))
         {
             Time.timeScale = 0;
             uiScript.OnGameOverScreen();
             SoundManager.Instance.onGameOverSound();
         }
-        if (collision.gameObject.CompareTag("CampFire")) playerBehaviourScript.currentHealth = playerBehaviourScript.maxHealth; playerBehaviourScript.UpdateHP();
+        else if (collision.gameObject.CompareTag("CampFire")) playerBehaviourScript.currentHealth = playerBehaviourScript.maxHealth; playerBehaviourScript.UpdateHP();
     }
 
     private void OnTriggerExit2D(Collider2D collision)

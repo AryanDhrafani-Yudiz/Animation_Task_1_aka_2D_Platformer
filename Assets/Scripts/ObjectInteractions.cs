@@ -57,7 +57,6 @@ public class ObjectInteractions : MonoBehaviour
         {
             Time.timeScale = 0;
             uiScript.OnGameOverScreen();
-            SoundManager.Instance.onGameOverSound();
         }
         if (collision.gameObject.CompareTag("CampFire")) playerBehaviourScript.currentHealth = playerBehaviourScript.maxHealth; playerBehaviourScript.UpdateHP();
     }

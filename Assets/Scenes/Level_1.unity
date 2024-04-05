@@ -16778,6 +16778,7 @@ MonoBehaviour:
   speed: 3
   fixedJoystick: {fileID: 2929252284142587954}
   animationControllerScript: {fileID: 7171572698826135723}
+  UIManagerScript: {fileID: 515119747}
 --- !u!114 &7171572698826135721
 MonoBehaviour:
   m_ObjectHideFlags: 0

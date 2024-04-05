@@ -34,7 +34,6 @@ public class SoundManager : MonoBehaviour
     }
     public void onGameOverSound()
     {
-        //eventAudioSource.PlayOneShot(chestOpenClip);
         bgAudioSource.enabled = false;
         StartCoroutine(Timer(2));
     }

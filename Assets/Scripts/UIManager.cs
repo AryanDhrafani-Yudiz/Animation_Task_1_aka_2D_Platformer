@@ -50,6 +50,7 @@ public class UIManager : MonoBehaviour
         GamePlayCanvas.enabled = false;
         SettingsCanvas.enabled = false;
         GameOverCanvas.enabled = true;
+        SoundManager.Instance.onGameOverSound();
     }
     public void OnExitBtnClick()
     {

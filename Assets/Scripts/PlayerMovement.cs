@@ -10,18 +10,19 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private AnimationController animationControllerScript;
     [SerializeField] private UIManager UIManagerScript;
 
+    [SerializeField] private LayerMask groundLayerMask;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
     private void FixedUpdate()
     {
-        //IsGrounded = Physics2D.Raycast(transform.position, Vector3.down, 0.07f, 1 << 3); // Doesnt Work If Player On Edge
         IsGrounded = Physics2D.CircleCast(transform.position, 0.3f, Vector3.down, 0.07f, 1 << 3); // To Check If Player Can Jump Or Not Based On Is He/She On Ground
     }
     void Update()
     {
-        if (UIManagerScript.gamePlayScreen)
+        if (UIManager.Instance.gamePlayScreen)
         {
             if (fixedJoystick.Horizontal > 0.1f)
             {

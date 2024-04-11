@@ -34,8 +34,11 @@ public class ObjectInteractions : MonoBehaviour
         if (collision.gameObject.CompareTag("Door"))
         {
             currentSpriteRenderer = collision.gameObject.GetComponent<SpriteRenderer>();
-            currentSpriteRenderer.sprite = doorOpened;
-            SoundManager.Instance.onDoorOpenSound();
+            if (currentSpriteRenderer.sprite != doorOpened)
+            {
+                currentSpriteRenderer.sprite = doorOpened;
+                SoundManager.Instance.onDoorOpenSound();
+            }
         }
         if (collision.gameObject.CompareTag("NextLevelDoor"))
         {
@@ -44,8 +47,11 @@ public class ObjectInteractions : MonoBehaviour
         if (collision.gameObject.CompareTag("Chest"))
         {
             currentSpriteRenderer = collision.gameObject.GetComponent<SpriteRenderer>();
-            currentSpriteRenderer.sprite = chestOpened;
-            SoundManager.Instance.onChestOpenSound();
+            if (currentSpriteRenderer.sprite != chestOpened)
+            {
+                currentSpriteRenderer.sprite = chestOpened;
+                SoundManager.Instance.onChestOpenSound();
+            }
         }
         if (collision.gameObject.CompareTag("Ladder"))
         {

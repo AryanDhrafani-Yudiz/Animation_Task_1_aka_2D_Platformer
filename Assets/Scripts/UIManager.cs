@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager Instance;
+
     [SerializeField] private Image pauseBtnImage;
     [SerializeField] private Sprite pauseBtn;
     [SerializeField] private Sprite resumeBtn;
@@ -17,6 +19,7 @@ public class UIManager : MonoBehaviour
 
     void Awake()
     {
+        if (Instance == null) Instance = this;
         Time.timeScale = 1;
         StartingScreenCanvas.enabled = true;
         GamePlayCanvas.enabled = false;

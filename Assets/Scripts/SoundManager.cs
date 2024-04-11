@@ -1,8 +1,17 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class SoundManager : MonoBehaviour
 {
+    [SerializeField] private Image volumeBtnImage;
+    [SerializeField] private Sprite volumeOnBtn;
+    [SerializeField] private Sprite volumeOffBtn;
+
+    [SerializeField] private Image musicBtnImage;
+    [SerializeField] private Sprite musicOnBtn;
+    [SerializeField] private Sprite musicOffBtn;
+
     public static SoundManager Instance;
 
     [SerializeField] private AudioSource bgAudioSource;
@@ -84,7 +93,19 @@ public class SoundManager : MonoBehaviour
 
     public void OnMusicOn(bool value) { if (value) bgAudioSource.mute = false; else bgAudioSource.mute = true; }
 
-    public void OnGameOverSound()
+    public void ChangeMusicVolume(float musicVolume)
+    {
+        bgAudioSource.volume = musicVolume;
+        if (bgAudioSource.volume == 0) musicBtnImage.sprite = musicOffBtn;
+        else musicBtnImage.sprite = musicOnBtn;
+    }
+    public void ChangeGameplaySoundVolume(float soundVolume)
+    {
+        eventAudioSource.volume = soundVolume;
+        if (eventAudioSource.volume == 0) volumeBtnImage.sprite = volumeOffBtn;
+        else volumeBtnImage.sprite = volumeOnBtn;
+    }
+    public void OnGameOverSound() // When Player Dies Or Game Is Over
     {
         PlaySound(SoundName.DeathSound);
         bgAudioSource.enabled = false;

@@ -25,15 +25,25 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Canvas GameOverCanvas;
     public bool gamePlayScreen = false;
 
+    [SerializeField] private Slider gameplaySoundSlider;
+    [SerializeField] private Slider musicSlider;
+    [SerializeField] private AudioSource bgAudioSource;
+    [SerializeField] private AudioSource eventAudioSource;
+
     void Awake()
     {
         if (Instance == null) Instance = this;
         Time.timeScale = 1;
-
+    }
+    private void Start()
+    {
         StartingScreenCanvas.enabled = true;
         GamePlayCanvas.enabled = false;
         SettingsCanvas.enabled = false;
         GameOverCanvas.enabled = false;
+
+        gameplaySoundSlider.value = eventAudioSource.volume;
+        musicSlider.value = bgAudioSource.volume;
     }
     public void OnPlayBtnClick()
     {
@@ -117,6 +127,14 @@ public class UIManager : MonoBehaviour
             SoundManager.Instance.OnMusicOn(true);
             musicBtnImage.sprite = musicOnBtn;
         }
+    }
+    public void ChangeGameplaySoundVolume()
+    {
+        SoundManager.Instance.ChangeGameplaySoundVolume(gameplaySoundSlider.value);
+    }
+    public void ChangeMusicVolume()
+    {
+        SoundManager.Instance.ChangeMusicVolume(musicSlider.value);
     }
     public void OnRestartBtn()
     {

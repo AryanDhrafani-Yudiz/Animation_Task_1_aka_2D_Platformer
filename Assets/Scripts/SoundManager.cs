@@ -20,7 +20,8 @@ public class SoundManager : MonoBehaviour
         DoorOpen,
         SwordSlash,
         HurtSound,
-        HealSound
+        HealSound,
+        DeathSound
     }
 
     [System.Serializable]
@@ -69,9 +70,9 @@ public class SoundManager : MonoBehaviour
 
     public void OnChestOpenSound() { PlaySound(SoundName.ChestOpen); }
 
-    public void OnUIScreenOpened() { bgAudioSource.clip = GetAudioClip(SoundName.UIbgm); bgAudioSource.Play(); }
+    public void OnUIScreenOpened() { if (bgAudioSource.enabled) { bgAudioSource.clip = GetAudioClip(SoundName.UIbgm); bgAudioSource.Play(); } }
 
-    public void OnGamePlayScreen() { bgAudioSource.clip = GetAudioClip(SoundName.GamePlayBGM); bgAudioSource.Play(); }
+    public void OnGamePlayScreen() { if (bgAudioSource.enabled) { bgAudioSource.clip = GetAudioClip(SoundName.GamePlayBGM); bgAudioSource.Play(); } }
 
     public void OnAttackButtonClicked() { PlaySound(SoundName.SwordSlash); }
 
@@ -85,8 +86,9 @@ public class SoundManager : MonoBehaviour
 
     public void OnGameOverSound()
     {
+        PlaySound(SoundName.DeathSound);
         bgAudioSource.enabled = false;
-        StartCoroutine(Timer(1.5f));
+        StartCoroutine(Timer(GetAudioClip(SoundName.DeathSound).length));
     }
     private IEnumerator Timer(float seconds) // Coroutine For Giving Delay Of Certain Seconds
     {

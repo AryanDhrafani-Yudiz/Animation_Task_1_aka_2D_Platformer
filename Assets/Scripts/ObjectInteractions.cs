@@ -25,7 +25,7 @@ public class ObjectInteractions : MonoBehaviour
             playerRigidBody.velocity += new Vector2(playerRigidBody.velocity.x, amountOfBounce);
             SoundManager.Instance.OnBouncePadSound();
         }
-        if (collision.gameObject.CompareTag("BouncePadExtreme"))
+        else if (collision.gameObject.CompareTag("BouncePadExtreme"))
         {
             playerRigidBody.velocity += new Vector2(playerRigidBody.velocity.x, amountOfBounce * 2);
             SoundManager.Instance.OnBouncePadSound();
@@ -42,11 +42,11 @@ public class ObjectInteractions : MonoBehaviour
                 SoundManager.Instance.OnDoorOpenSound();
             }
         }
-        if (collision.gameObject.CompareTag("NextLevelDoor"))
+        else if (collision.gameObject.CompareTag("NextLevelDoor"))
         {
             StartCoroutine(LoadYourAsyncScene());
         }
-        if (collision.gameObject.CompareTag("Chest"))
+        else if (collision.gameObject.CompareTag("Chest"))
         {
             currentSpriteRenderer = collision.gameObject.GetComponent<SpriteRenderer>();
             if (currentSpriteRenderer.sprite != chestOpened)
@@ -55,18 +55,18 @@ public class ObjectInteractions : MonoBehaviour
                 SoundManager.Instance.OnChestOpenSound();
             }
         }
-        if (collision.gameObject.CompareTag("Ladder"))
+        else if (collision.gameObject.CompareTag("Ladder"))
         {
             joystickScript.axisOptions = AxisOptions.Both;
             playerRigidBody.gravityScale = 0;
             playerRigidBody.velocity = Vector2.zero;
         }
-        if (collision.gameObject.CompareTag("Water"))
+        else if (collision.gameObject.CompareTag("Water"))
         {
             Time.timeScale = 0;
             UIManager.Instance.OnGameOverScreen();
         }
-        if (collision.gameObject.CompareTag("CampFire"))
+        else if (collision.gameObject.CompareTag("CampFire"))
         {
             if (healCount > 0)
             {

@@ -31,6 +31,7 @@ public class UIManager : MonoBehaviour
         gamePlayScreen = true;
         GamePlayCanvas.enabled = true;
         StartingScreenCanvas.enabled = false;
+        SoundManager.Instance.OnGamePlayScreen();
     }
     public void OnSettingsBtnClick() // Pause The Game On Settings Btn Click
     {
@@ -38,6 +39,7 @@ public class UIManager : MonoBehaviour
         GamePlayCanvas.enabled = false;
         SettingsCanvas.enabled = true;
         Time.timeScale = 0;
+        SoundManager.Instance.OnUIScreenOpened();
     }
     public void OnResume() // Unpause The Game On Resume Btn Click
     {
@@ -45,6 +47,7 @@ public class UIManager : MonoBehaviour
         GamePlayCanvas.enabled = true;
         SettingsCanvas.enabled = false;
         Time.timeScale = 1;
+        SoundManager.Instance.OnGamePlayScreen();
     }
     public void OnGameOverScreen()
     {
@@ -54,6 +57,7 @@ public class UIManager : MonoBehaviour
         SettingsCanvas.enabled = false;
         GameOverCanvas.enabled = true;
         SoundManager.Instance.onGameOverSound();
+        SoundManager.Instance.OnUIScreenOpened();
     }
     public void OnExitBtnClick()
     {

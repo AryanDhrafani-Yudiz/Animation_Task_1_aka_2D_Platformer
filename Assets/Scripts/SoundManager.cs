@@ -12,10 +12,14 @@ public class SoundManager : MonoBehaviour
 
     public enum SoundName
     {
-        BackgroundMusic,
+        GamePlayBGM,
+        UIbgm,
+        ButtonClick,
         BouncePad,
         ChestOpen,
-        DoorOpen
+        DoorOpen,
+        SwordSlash,
+        HurtSound
     }
 
     [System.Serializable]
@@ -43,23 +47,31 @@ public class SoundManager : MonoBehaviour
             }
         }
     }
-    public void SoundMute(bool val)
+    private AudioClip GetAudioClip(SoundName name)
     {
-        eventAudioSource.mute = val;
+        foreach (var item in audioClips)
+        {
+            if (item.name == name)
+            {
+                return item.clip;
+            }
+        }
+        return null;
     }
+    public void SoundMute(bool val) { eventAudioSource.mute = val; }
 
-    public void onBouncePadSound()
-    {
-        PlaySound(SoundName.BouncePad);
-    }
-    public void onDoorOpenSound()
-    {
-        PlaySound(SoundName.DoorOpen);
-    }
-    public void onChestOpenSound()
-    {
-        PlaySound(SoundName.ChestOpen);
-    }
+    public void OnButtonClick() { PlaySound(SoundName.ButtonClick); }
+
+    public void OnBouncePadSound() { PlaySound(SoundName.BouncePad); }
+
+    public void OnDoorOpenSound() { PlaySound(SoundName.DoorOpen); }
+
+    public void OnChestOpenSound() { PlaySound(SoundName.ChestOpen); }
+
+    public void OnUIScreenOpened() { bgAudioSource.clip = GetAudioClip(SoundName.UIbgm); bgAudioSource.Play(); }
+
+    public void OnGamePlayScreen() { bgAudioSource.clip = GetAudioClip(SoundName.GamePlayBGM); bgAudioSource.Play(); }
+
     public void onGameOverSound()
     {
         bgAudioSource.enabled = false;

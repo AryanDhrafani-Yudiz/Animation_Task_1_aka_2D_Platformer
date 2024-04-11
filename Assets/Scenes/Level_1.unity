@@ -6241,7 +6241,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: d2a9c51df44da4e2fab6cc98314e9a0a, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 79736fa115f7c4026846a897a735b005, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1
@@ -16732,21 +16732,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bc0f4cdca3574efe80e52261633e394, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bounceClip: {fileID: 8300000, guid: 55e76ae130c524c2d8a74881d2a04e82, type: 3}
-  chestOpenClip: {fileID: 8300000, guid: af2164b29ed9a4664855bbb40b225218, type: 3}
-  doorOpen: {fileID: 8300000, guid: 29c91adac174b47eb8430db9a6c6bb2e, type: 3}
-  bgMusic: {fileID: 8300000, guid: d2a9c51df44da4e2fab6cc98314e9a0a, type: 3}
   bgAudioSource: {fileID: 519420034}
   eventAudioSource: {fileID: 519420035}
   audioClips:
   - name: 0
-    clip: {fileID: 8300000, guid: d2a9c51df44da4e2fab6cc98314e9a0a, type: 3}
+    clip: {fileID: 8300000, guid: dc1da32737ebd4b7cab12c8b249b64ea, type: 3}
   - name: 1
-    clip: {fileID: 8300000, guid: 55e76ae130c524c2d8a74881d2a04e82, type: 3}
+    clip: {fileID: 8300000, guid: 79736fa115f7c4026846a897a735b005, type: 3}
   - name: 2
-    clip: {fileID: 8300000, guid: af2164b29ed9a4664855bbb40b225218, type: 3}
+    clip: {fileID: 8300000, guid: 2f14a557497cb47a2bba9c11875474e2, type: 3}
   - name: 3
-    clip: {fileID: 8300000, guid: 29c91adac174b47eb8430db9a6c6bb2e, type: 3}
+    clip: {fileID: 8300000, guid: 2c0c11a29c54040cc8bc9202039e73bb, type: 3}
+  - name: 4
+    clip: {fileID: 8300000, guid: cdf4d2369b0aa4198acc019e865b9107, type: 3}
+  - name: 5
+    clip: {fileID: 8300000, guid: d041ed28e5ef44e1eb6300716cf1c529, type: 3}
+  - name: 6
+    clip: {fileID: 8300000, guid: 24d9384888e98440daa5f591205ca3ad, type: 3}
+  - name: 7
+    clip: {fileID: 8300000, guid: 977857790dd7b44bc8f885815c5677d2, type: 3}
 --- !u!1 &7171572698826135718
 GameObject:
   m_ObjectHideFlags: 0

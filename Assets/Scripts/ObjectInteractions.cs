@@ -21,12 +21,12 @@ public class ObjectInteractions : MonoBehaviour
         if (collision.gameObject.CompareTag("BouncePad"))
         {
             playerRigidBody.velocity += new Vector2(playerRigidBody.velocity.x, amountOfBounce);
-            SoundManager.Instance.onBouncePadSound();
+            SoundManager.Instance.OnBouncePadSound();
         }
         if (collision.gameObject.CompareTag("BouncePadExtreme"))
         {
             playerRigidBody.velocity += new Vector2(playerRigidBody.velocity.x, amountOfBounce * 2);
-            SoundManager.Instance.onBouncePadSound();
+            SoundManager.Instance.OnBouncePadSound();
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -37,7 +37,7 @@ public class ObjectInteractions : MonoBehaviour
             if (currentSpriteRenderer.sprite != doorOpened)
             {
                 currentSpriteRenderer.sprite = doorOpened;
-                SoundManager.Instance.onDoorOpenSound();
+                SoundManager.Instance.OnDoorOpenSound();
             }
         }
         if (collision.gameObject.CompareTag("NextLevelDoor"))
@@ -50,7 +50,7 @@ public class ObjectInteractions : MonoBehaviour
             if (currentSpriteRenderer.sprite != chestOpened)
             {
                 currentSpriteRenderer.sprite = chestOpened;
-                SoundManager.Instance.onChestOpenSound();
+                SoundManager.Instance.OnChestOpenSound();
             }
         }
         if (collision.gameObject.CompareTag("Ladder"))

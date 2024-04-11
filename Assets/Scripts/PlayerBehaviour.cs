@@ -4,7 +4,6 @@ using TMPro;
 public class PlayerBehaviour : MonoBehaviour, IDamageable
 {
     [SerializeField] private AnimationController animationControllerScript;
-    [SerializeField] private UIManager uiManagerScript;
     private Animator playerAnimator;
     [SerializeField] TextMeshProUGUI hpObject;
 
@@ -57,7 +56,7 @@ public class PlayerBehaviour : MonoBehaviour, IDamageable
 
         GetComponent<Rigidbody2D>().isKinematic = true;
         GetComponent<Collider2D>().enabled = false;
-        uiManagerScript.OnGameOverScreen();
+        UIManager.Instance.OnGameOverScreen();
         this.enabled = false;
     }
     public void UpdateHP()

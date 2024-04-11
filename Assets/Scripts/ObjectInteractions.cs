@@ -10,8 +10,8 @@ public class ObjectInteractions : MonoBehaviour
     [SerializeField] private Joystick joystickScript;
     [SerializeField] private float amountOfBounce;
     private Rigidbody2D playerRigidBody;
-    [SerializeField] private UIManager uiScript;
     [SerializeField] private PlayerBehaviour playerBehaviourScript;
+
     private void Start()
     {
         playerRigidBody = GetComponent<Rigidbody2D>();
@@ -62,19 +62,9 @@ public class ObjectInteractions : MonoBehaviour
         if (collision.gameObject.CompareTag("Water"))
         {
             Time.timeScale = 0;
-            uiScript.OnGameOverScreen();
+            UIManager.Instance.OnGameOverScreen();
         }
         if (collision.gameObject.CompareTag("CampFire")) playerBehaviourScript.currentHealth = playerBehaviourScript.maxHealth; playerBehaviourScript.UpdateHP();
-    }
-    IEnumerator LoadYourAsyncScene()
-    {
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(1, LoadSceneMode.Single);
-        Time.timeScale = 1;
-
-        while (!asyncLoad.isDone)
-        {
-            yield return null;
-        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -82,6 +72,16 @@ public class ObjectInteractions : MonoBehaviour
         {
             joystickScript.axisOptions = AxisOptions.Horizontal;
             playerRigidBody.gravityScale = 1;
+        }
+    }
+    private IEnumerator LoadYourAsyncScene()
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(1, LoadSceneMode.Single);
+        Time.timeScale = 1;
+
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
         }
     }
 }

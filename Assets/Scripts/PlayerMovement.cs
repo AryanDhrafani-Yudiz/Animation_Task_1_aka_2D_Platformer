@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        IsGrounded = Physics2D.CircleCast(transform.position, 0.3f, Vector3.down, 0.07f, 1 << 3); // To Check If Player Can Jump Or Not Based On Is He/She On Ground
+        IsGrounded = Physics2D.CircleCast(transform.position, 0.3f, Vector3.down, 0.07f, groundLayerMask); // To Check If Player Can Jump Or Not Based On Is He/She On Ground
     }
     void Update()
     {

@@ -19,7 +19,8 @@ public class SoundManager : MonoBehaviour
         ChestOpen,
         DoorOpen,
         SwordSlash,
-        HurtSound
+        HurtSound,
+        HealSound
     }
 
     [System.Serializable]
@@ -75,6 +76,8 @@ public class SoundManager : MonoBehaviour
     public void OnAttackButtonClicked() { PlaySound(SoundName.SwordSlash); }
 
     public void OnHurt() { PlaySound(SoundName.HurtSound); }
+
+    public void OnHeal() { PlaySound(SoundName.HealSound); }
 
     public void OnVolumeOn(bool value) { if (value) eventAudioSource.mute = false; else eventAudioSource.mute = true; }
 

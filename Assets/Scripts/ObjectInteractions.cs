@@ -12,6 +12,8 @@ public class ObjectInteractions : MonoBehaviour
     private Rigidbody2D playerRigidBody;
     [SerializeField] private PlayerBehaviour playerBehaviourScript;
 
+    private int healCount = 1;
+
     private void Start()
     {
         playerRigidBody = GetComponent<Rigidbody2D>();
@@ -64,7 +66,15 @@ public class ObjectInteractions : MonoBehaviour
             Time.timeScale = 0;
             UIManager.Instance.OnGameOverScreen();
         }
-        if (collision.gameObject.CompareTag("CampFire")) playerBehaviourScript.currentHealth = playerBehaviourScript.maxHealth; playerBehaviourScript.UpdateHP();
+        if (collision.gameObject.CompareTag("CampFire"))
+        {
+            if (healCount > 0)
+            {
+                playerBehaviourScript.currentHealth = playerBehaviourScript.maxHealth; playerBehaviourScript.UpdateHP();
+                SoundManager.Instance.OnHeal();
+                healCount--;
+            }
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {

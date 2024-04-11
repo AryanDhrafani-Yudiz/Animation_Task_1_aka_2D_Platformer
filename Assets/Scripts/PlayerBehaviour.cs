@@ -27,18 +27,21 @@ public class PlayerBehaviour : MonoBehaviour, IDamageable
     }
     public void Attack()
     {
-        if (Time.time >= nextAttackTime)
+        if (UIManager.Instance.gamePlayScreen && !UIManager.Instance.isPaused)
         {
-            animationControllerScript.AttackAnimation();
-            SoundManager.Instance.OnAttackButtonClicked();
-
-            Collider2D[] enemiesHit = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-
-            foreach (Collider2D enemy in enemiesHit)
+            if (Time.time >= nextAttackTime)
             {
-                enemy.GetComponent<IDamageable>().takeDamage(attackDamage);
+                animationControllerScript.AttackAnimation();
+                SoundManager.Instance.OnAttackButtonClicked();
+
+                Collider2D[] enemiesHit = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+
+                foreach (Collider2D enemy in enemiesHit)
+                {
+                    enemy.GetComponent<IDamageable>().takeDamage(attackDamage);
+                }
+                nextAttackTime = Time.time + 1f / attackRate;
             }
-            nextAttackTime = Time.time + 1f / attackRate;
         }
     }
     public void takeDamage(int damage)

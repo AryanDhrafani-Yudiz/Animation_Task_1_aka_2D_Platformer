@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
-        if (UIManager.Instance.gamePlayScreen)
+        if (UIManager.Instance.gamePlayScreen && !UIManager.Instance.isPaused)
         {
             if (fixedJoystick.Horizontal > 0.1f)
             {
@@ -40,10 +40,13 @@ public class PlayerMovement : MonoBehaviour
     }
     public void playerJump()
     {
-        if (IsGrounded)
+        if (UIManager.Instance.gamePlayScreen && !UIManager.Instance.isPaused)
         {
-            rb.AddForce(jumpDir, ForceMode2D.Impulse);
-            animationControllerScript.JumpAnimation();
+            if (IsGrounded)
+            {
+                rb.AddForce(jumpDir, ForceMode2D.Impulse);
+                animationControllerScript.JumpAnimation();
+            }
         }
     }
 }

@@ -24,6 +24,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Canvas SettingsCanvas;
     [SerializeField] private Canvas GameOverCanvas;
     public bool gamePlayScreen = false;
+    public bool isPaused = false;
 
     [SerializeField] private Slider gameplaySoundSlider;
     [SerializeField] private Slider musicSlider;
@@ -93,12 +94,14 @@ public class UIManager : MonoBehaviour
         {
             SoundManager.Instance.OnUIScreenOpened();
             pauseBtnImage.sprite = resumeBtn;
+            isPaused = true;
             Time.timeScale = 0;
         }
         else if (pauseBtnImage.sprite == resumeBtn)
         {
             SoundManager.Instance.OnGamePlayScreen();
             pauseBtnImage.sprite = pauseBtn;
+            isPaused = false;
             Time.timeScale = 1;
         }
     }

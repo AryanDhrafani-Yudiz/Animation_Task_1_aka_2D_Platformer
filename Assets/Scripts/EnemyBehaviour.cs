@@ -23,20 +23,23 @@ public class EnemyBehaviour : MonoBehaviour, IDamageable
     }
     public void Attack()
     {
-        enemyAnimator.SetBool("Walk", false); enemyAnimator.SetBool("Run", false);
-        if (Time.time >= nextAttackTime)
+        if (UIManager.Instance.gamePlayScreen && !UIManager.Instance.isPaused)
         {
-            Collider2D[] playersHit = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayers);
-
-            foreach (Collider2D player in playersHit)
+            enemyAnimator.SetBool("Walk", false); enemyAnimator.SetBool("Run", false);
+            if (Time.time >= nextAttackTime)
             {
-                if (player.GetComponent<IDamageable>().currentHealth > 0)
+                Collider2D[] playersHit = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayers);
+
+                foreach (Collider2D player in playersHit)
                 {
-                    enemyAnimator.SetTrigger("Attack");
-                    player.GetComponent<IDamageable>().takeDamage(attackDamage);
+                    if (player.GetComponent<IDamageable>().currentHealth > 0)
+                    {
+                        enemyAnimator.SetTrigger("Attack");
+                        player.GetComponent<IDamageable>().takeDamage(attackDamage);
+                    }
                 }
+                nextAttackTime = Time.time + 1f / attackRate;
             }
-            nextAttackTime = Time.time + 1f / attackRate;
         }
     }
     public void takeDamage(int damage)

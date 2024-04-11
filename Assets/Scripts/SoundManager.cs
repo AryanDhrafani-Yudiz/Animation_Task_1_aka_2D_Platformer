@@ -89,9 +89,9 @@ public class SoundManager : MonoBehaviour
 
     public void OnHeal() { PlaySound(SoundName.HealSound); }
 
-    public void OnVolumeOn(bool value) { if (value) eventAudioSource.mute = false; else eventAudioSource.mute = true; }
+    public void OnVolumeOn(bool value, float sliderValue) { if (value) eventAudioSource.volume = sliderValue; else eventAudioSource.volume = 0f; }
 
-    public void OnMusicOn(bool value) { if (value) bgAudioSource.mute = false; else bgAudioSource.mute = true; }
+    public void OnMusicOn(bool value, float sliderValue) { if (value) bgAudioSource.volume = sliderValue; else bgAudioSource.volume = 0; }
 
     public void ChangeMusicVolume(float musicVolume)
     {

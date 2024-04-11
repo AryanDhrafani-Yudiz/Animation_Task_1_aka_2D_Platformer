@@ -106,12 +106,12 @@ public class UIManager : MonoBehaviour
     {
         if (volumeBtnImage.sprite == volumeOnBtn)
         {
-            SoundManager.Instance.OnVolumeOn(false);
+            SoundManager.Instance.OnVolumeOn(false, gameplaySoundSlider.value);
             volumeBtnImage.sprite = volumeOffBtn;
         }
         else if (volumeBtnImage.sprite == volumeOffBtn)
         {
-            SoundManager.Instance.OnVolumeOn(true);
+            SoundManager.Instance.OnVolumeOn(true, gameplaySoundSlider.value);
             volumeBtnImage.sprite = volumeOnBtn;
         }
     }
@@ -119,12 +119,12 @@ public class UIManager : MonoBehaviour
     {
         if (musicBtnImage.sprite == musicOnBtn)
         {
-            SoundManager.Instance.OnMusicOn(false);
+            SoundManager.Instance.OnMusicOn(false, musicSlider.value);
             musicBtnImage.sprite = musicOffBtn;
         }
         else if (musicBtnImage.sprite == musicOffBtn)
         {
-            SoundManager.Instance.OnMusicOn(true);
+            SoundManager.Instance.OnMusicOn(true, musicSlider.value);
             musicBtnImage.sprite = musicOnBtn;
         }
     }

@@ -30,6 +30,7 @@ public class PlayerBehaviour : MonoBehaviour, IDamageable
         if (Time.time >= nextAttackTime)
         {
             animationControllerScript.AttackAnimation();
+            SoundManager.Instance.OnAttackButtonClicked();
 
             Collider2D[] enemiesHit = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 
@@ -44,6 +45,7 @@ public class PlayerBehaviour : MonoBehaviour, IDamageable
     {
         currentHealth -= damage;
         playerAnimator.SetTrigger("Hurt");
+        SoundManager.Instance.OnHurt();
         UpdateHP();
         if (currentHealth <= 0)
         {

@@ -58,7 +58,7 @@ public class SoundManager : MonoBehaviour
         }
         return null;
     }
-    public void SoundMute(bool val) { eventAudioSource.mute = val; }
+    public void SoundMute(bool value) { eventAudioSource.mute = value; }
 
     public void OnButtonClick() { PlaySound(SoundName.ButtonClick); }
 
@@ -72,7 +72,15 @@ public class SoundManager : MonoBehaviour
 
     public void OnGamePlayScreen() { bgAudioSource.clip = GetAudioClip(SoundName.GamePlayBGM); bgAudioSource.Play(); }
 
-    public void onGameOverSound()
+    public void OnAttackButtonClicked() { PlaySound(SoundName.SwordSlash); }
+
+    public void OnHurt() { PlaySound(SoundName.HurtSound); }
+
+    public void OnVolumeOn(bool value) { if (value) eventAudioSource.mute = false; else eventAudioSource.mute = true; }
+
+    public void OnMusicOn(bool value) { if (value) bgAudioSource.mute = false; else bgAudioSource.mute = true; }
+
+    public void OnGameOverSound()
     {
         bgAudioSource.enabled = false;
         StartCoroutine(Timer(1.5f));

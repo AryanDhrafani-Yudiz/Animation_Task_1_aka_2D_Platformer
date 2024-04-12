@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System;
 
 public class SoundManager : MonoBehaviour
 {
@@ -49,25 +50,14 @@ public class SoundManager : MonoBehaviour
     }
     public void PlaySound(SoundName name)
     {
-        foreach (var item in audioClips)
-        {
-            if (item.name == name)
-            {
-                eventAudioSource.PlayOneShot(item.clip);
-                break;
-            }
-        }
+        Sound currentAudio = Array.Find(audioClips, yolo => yolo.name == name);
+        eventAudioSource.PlayOneShot(currentAudio.clip);
     }
     private AudioClip GetAudioClip(SoundName name)
     {
-        foreach (var item in audioClips)
-        {
-            if (item.name == name)
-            {
-                return item.clip;
-            }
-        }
-        return null;
+        Sound currentAudio = Array.Find(audioClips, yolo => yolo.name == name);
+        if (currentAudio != null) return currentAudio.clip;
+        else return null;
     }
     public void SoundMute(bool value) { eventAudioSource.mute = value; }
 
